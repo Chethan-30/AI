@@ -1,0 +1,29 @@
+                                    Assignment II: Game Playing AI Agent
+
+Banoth Chethan Naik  2020CS10333
+Nithin Sai Nagelli         2020CS10361
+
+Part A( Played against a random agent):
+The function used is get_expectimax_move. This function has an input attribute state and gives an output tuple that consists of an integer column_number and a boolean which tells whether it should pop the token or push the token in the column.
+When both scores are zero, it returns the action which puts the token in the middle column.
+For implementing we used 3 helper functions named expectimax_max_val, expectimax_val, expectimax_change_state.
+expectimax_change_state: This function takes inputs as state and action which gives the output a state obtained when the given action is done on the given state.
+expectimax_max_val: It takes the inputs as state & height. If the height is 0 or state is terminal (no valid actions) it returns the utility function as output. Otherwise, it calculates the expectimax_val of the states when every action in valid actions is done and gives the maximum of those expectimax_val, and decreases height by 1.
+expectimax_val: It takes the inputs state & height. If the height is 0 or state is terminal (no valid actions) it returns the utility function as output. Otherwise it decreases height by 1 and calls the expectimax_max_val on the states obtained by doing every action and takes the average of these values.
+The utility function of the current state is given by comparing this state and with its successor states by sum of 3 parameters and returns the successor state which has maximum sum.
+3 parameters are Increase of score of ai player, decrease of score in random player, difference between ai and random player scores.
+
+The function calls the expectimax_max_val function which helps to give the action required. Height took is 2
+
+Part B( Played against adversial agent):
+The function used is get_intelligent_move. This function has an input attribute state and gives an output tuple that consists of an integer column_number and a boolean which tells whether it should pop the token or push the token in the column.
+When both scores are zero, it returns the action which puts the token in the middle column.
+For implementing we used 3 helper functions named max_val, min_val, and change_state.
+change_state: This function takes input state and action which gives the output a state obtained when the given action is done on the given state.
+max_val: It takes the inputs as state & height. If the height is 0 or state is terminal (no valid actions) it returns the utility function as output. Otherwise, it calculates the min_val of the states when every action in valid actions is done and gives the maximum of those min_val, and decreases height by 1.
+min_val: It takes the inputs as state & height. If the height is 0 or the state is terminal (no valid actions) it returns the utility function as output. Otherwise, it decreases height by 1 and calls the max_val on the states obtained by doing every action and takes the minimum of these values.
+The utility function of the current state gives the difference between the scores of players(i.e ai-adversarial agent)
+We used alpha-beta pruning to optimize the checking of possible states.
+This function calls the max_val which helps to give the required action.
+Height took is 4.
+
